@@ -1,0 +1,23 @@
+MAJOR_VERSION = 8
+MINOR_VERSION = 5
+
+COMPILER = gcc
+
+DEFINE = -DUSE_TCL_STUBS -DTK_USE_STUBS
+SOURCE = TkImageTools.c
+
+USER_PATH = -I/usr/local/include -L/usr/local/lib
+CFLAGS = -Wall -shared -fPIC $(DEFINE) $(USER_PATH)
+
+TARGET = TkImageTools.so
+LDFLAGS = -ltclstub$(MAJOR_VERSION).$(MINOR_VERSION) -ltclstub$(MAJOR_VERSION).$(MINOR_VERSION)
+LDFLAGS += -ltk$(MAJOR_VERSION).$(MINOR_VERSION)
+
+ifeq "$(OS)" "Windows_NT"
+TARGET = TkImageTools.dll
+LDFLAGS = -ltclstub$(MAJOR_VERSION)$(MINOR_VERSION) -ltclstub$(MAJOR_VERSION)$(MINOR_VERSION)
+LDFLAGS += -ltk$(MAJOR_VERSION)$(MINOR_VERSION)
+endif
+
+$(TARGET) : $(SOURCE)
+	gcc -o $@ $< $(CFLAGS) $(LDFLAGS)

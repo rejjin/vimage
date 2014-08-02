@@ -1,0 +1,8 @@
+Скопировать папку vimage в директорию ~/.tkabber/plugins
+
+Структура размещения файлов должна оставаться следующей:
+  ~/.tkabber/plugins
+  ~/.tkabber/plugins/vimage/
+  ~/.tkabber/plugins/vimage/vimage.tcl
+ 
+Перезапустить Tkabber. Плагин готов к использованию.
